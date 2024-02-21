@@ -7,7 +7,9 @@ userNum = int(input("Enter a number between 1-100: "))
 
 previousGuesses = []
 
-compGuess = choice([i for i in range(0,100) if i not in previousGuesses])
+compGuess = choice([i for i in range(0,100) if i not in previousGuesses]) # computer chooses number between 1-100
+# however, we want the computer not to repeat the numbers it previously chose
+# does this actually work? Not quite. I will do more investigating.
 
 
 while correctGuess == False:
