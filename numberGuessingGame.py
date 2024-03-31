@@ -1,31 +1,27 @@
 import random
-from random import choice
-
-correctGuess = False
 
 userNum = int(input("Enter a number between 1-100: "))
 
-previousGuesses = []
-
-compGuess = choice([i for i in range(0,100) if i not in previousGuesses]) # computer chooses number between 1-100
-# however, we want the computer not to repeat the numbers it previously chose
-# does this actually work? Not quite. I will do more investigating.
-
+# initialise variables
+high = 100
+low = 0
+compGuess = random.randint(low, high)
+correctGuess = False
+ # not the most performance-optimised program, but it does the thing for now.
 
 while correctGuess == False:
     userInput = input("Is your number " + str(compGuess) + "? (Higher/Lower/Y)")
 
-    if userInput == "Higher":
-        newGuess = random.randint(compGuess, 100)
-        previousGuesses.append(newGuess)
-        compGuess = newGuess
+    if userInput.lower() == "higher":
+        # if userNum is higher, set low to computer's guess
+        low = compGuess
+        # compGuess becomes the average of low + high
+        compGuess = (low + high)//2
 
-    elif userInput == "Lower":
-        newGuess = random.randint(1, compGuess)
-        previousGuesses.append(newGuess)
-        compGuess = newGuess
+    elif userInput.lower() == "lower":
+        high = compGuess
+        compGuess = (low + high)//2
     else:
-        newGuess = compGuess
-        print("Your number was " + str(newGuess) + "!")
-        correctGuess == True
+        print("Your number was " + str(compGuess) + "!")
+        correctGuess = True
         break
